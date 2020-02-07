@@ -1,0 +1,3 @@
+@mixin margin($dir, $margin) {
+  margin-#{$dir}: $margin;
+}

@@ -1,0 +1,15 @@
+@mixin border($borderSize, $borderColor) {
+  border: $borderSize solid $borderColor
+}
+
+@mixin border-top($borderSize, $borderColor) {
+  border-top: $borderSize solid $borderColor
+}
+
+@mixin border-bottom($borderSize, $borderColor) {
+  border-bottom: $borderSize solid $borderColor
+}
+
+@mixin box-shadow($x, $y, $blur, $color) {
+  box-shadow: $x $y $blur $color;
+}

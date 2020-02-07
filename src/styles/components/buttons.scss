@@ -1,0 +1,81 @@
+@mixin button($color, $backgroundColor, $padding, $sideMargin) {
+  background: $backgroundColor;
+  color: $color;
+  padding: $padding;
+  margin-left: $sideMargin;
+  margin-right: $sideMargin;
+  font-family: $font-family;
+  @include border($border-1px, $backgroundColor);
+
+  &:hover {
+    background: $color;
+    color: $backgroundColor;
+    transition: $transition;
+  }
+}
+
+@mixin header-button($mainColor, $fontHoverColor, $borderSize, $padding, $sideMargin) {
+  background: $transparent;
+  color: $mainColor;
+  padding: $padding;
+  font-family: $font-family;
+  margin-left: $sideMargin;
+  margin-right: $sideMargin;
+  @include border-bottom($border-1px, $transparent);
+
+  &:hover {
+    transition: $transition;
+    @include border-bottom($border-1px, $mainColor);
+  }
+}
+
+@mixin table-button($color, $backgroundColor, $padding, $margin, $borderRadius) {
+  background: $backgroundColor;
+  color: $color;
+  padding: $padding;
+  margin: $margin;
+  border-radius: $borderRadius;
+  font-family: $font-family;
+  @include border($border-1px, $color);
+
+  &:hover {
+    background: $color;
+    color: $backgroundColor;
+    transition: $transition;
+  }
+}
+
+@mixin footer-button($mainColor, $fontHoverColor, $borderSize, $padding, $sideMargin) {
+  background: $transparent;
+  color: $mainColor;
+  padding: $padding;
+  font-family: $font-family;
+  margin-left: $sideMargin;
+  margin-right: $sideMargin;
+  @include border-bottom($border-1px, $transparent);
+
+  &:hover {
+    transition: $transition;
+    @include border-bottom($border-1px, $mainColor);
+  }
+}
+
+@mixin button-overwrite($color, $backgroundColor, $borderSize, $padding, $sideMargin) {
+  background: $backgroundColor !important;
+  color: $color !important;
+  font-family: $font-family !important;
+  padding: $padding !important;
+  margin-left: $sideMargin !important;
+  margin-right: $sideMargin !important;
+  @include border($border-1px, $backgroundColor);
+
+  &:hover {
+    background: $color !important;
+    color: $backgroundColor !important;
+    transition: $transition !important;
+  }
+}
+
+.ui.checked.toggle.checkbox.label {
+  background: transparent
+}

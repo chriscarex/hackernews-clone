@@ -1,0 +1,34 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules/
+
+# testing
+coverage/
+
+# production
+build/
+dist/
+
+# cache
+.cache/
+
+# misc
+.DS_Store
+
+# tests
+cypress/screenshots
+
+# logs
+deploymentLogs/
+
+#env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.*
+.cache/
+.env*
+serverless.env.json
+stack-dev.json
+.serverless
