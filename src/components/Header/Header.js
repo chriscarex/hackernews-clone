@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from 'assets/img/tendertec-logo.png'
+import logo from 'assets/img/logo.png'
 import { Icon } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -7,8 +7,9 @@ import { ROUTE_HOME } from 'constants/routes'
 
 export const Header = ({ toggleSidebar }) => (
   <header className="header">
-    <Link to={ROUTE_HOME}
-      data-cy='logo-link'
+    <Link
+      to={ROUTE_HOME}
+      data-cy="logo-link"
     >
       <img
         src={logo}

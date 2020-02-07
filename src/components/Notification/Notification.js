@@ -7,9 +7,12 @@ export const Notification = ({
   isNotificationActive,
   notification
 }) => (isNotificationActive && (
-  <Segment inverted color="red"
+  <Segment
+    inverted
+    color="red"
     className="notification"
-    data-cy="notification">
+    data-cy="notification"
+  >
     {notification}
   </Segment>
 ))

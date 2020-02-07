@@ -2,8 +2,8 @@
 import { stub } from 'sinon'
 import { sendGetRequest, __RewireAPI__ } from '../sendGetRequest'
 
-const jsonResponse =  true
-const errorResponse = {error: true}
+const jsonResponse = true
+const errorResponse = { error: true }
 
 let fetchStub
 describe('sendGetRequest', () => {
