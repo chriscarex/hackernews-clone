@@ -1,11 +1,16 @@
+/* eslint import/named:0 */
 import React from 'react'
 import { shallow } from 'enzyme'
 import { stub } from 'sinon'
 import {
-  TOGGLE_SIDEBAR
+  TOGGLE_SIDEBAR,
+  UPDATE_ARTICLES,
+  ADD_LOADER,
+  REMOVE_LOADER
 } from 'constants/reducers'
-import { HeaderContainer } from '../HeaderContainer'
+import { HeaderContainer, __RewireAPI__ } from '../HeaderContainer'
 
+const toggleLoaderBeforeActionStub = stub().resolves([])
 const singleActionPropStub = stub()
 const pushStub = stub()
 
@@ -37,8 +42,42 @@ describe('HeaderContainer', () => {
     expect(typeof header.props().toggleSidebar).toEqual('function')
   })
 
-  describe('toggleSidebar', () => {
+  describe('componentDidMount', () => {
+    beforeEach(() => {
+      __RewireAPI__.__Rewire__('toggleLoaderBeforeAction', toggleLoaderBeforeActionStub)
+    })
+
     afterEach(() => {
+      __RewireAPI__.__ResetDependency__('toggleLoaderBeforeAction')
+      singleActionPropStub.resetHistory()
+    })
+
+    it('should toggle loaders and update articles', async () => {
+      const { header } = await setup()
+
+      await header.props().toggleSidebar()
+
+      expect(singleActionPropStub.called).toBe(true)
+
+      expect(singleActionPropStub.args[0][0]).toMatchObject(
+        { type: ADD_LOADER }
+      )
+      expect(singleActionPropStub.args[3][0]).toMatchObject(
+        { type: REMOVE_LOADER }
+      )
+      expect(singleActionPropStub.args[4][0]).toMatchObject(
+        { payload: { value: [] }, type: UPDATE_ARTICLES }
+      )
+    })
+  })
+
+  describe('toggleSidebar', () => {
+    beforeEach(() => {
+      __RewireAPI__.__Rewire__('toggleLoaderBeforeAction', toggleLoaderBeforeActionStub)
+    })
+
+    afterEach(() => {
+      __RewireAPI__.__ResetDependency__('toggleLoaderBeforeAction')
       singleActionPropStub.resetHistory()
     })
 
@@ -47,8 +86,8 @@ describe('HeaderContainer', () => {
 
       await header.props().toggleSidebar()
 
-      expect(singleActionPropStub.calledOnce).toBe(true)
-      expect(singleActionPropStub.args[0][0]).toMatchObject(
+      expect(singleActionPropStub.called).toBe(true)
+      expect(singleActionPropStub.args[3][0]).toMatchObject(
         { payload: { value: false }, type: TOGGLE_SIDEBAR }
       )
     })
