@@ -1,0 +1,20 @@
+@mixin circular-icon($color, $backgroundColor, $padding, $margin, $borderRadius, $dimension, $fontSize) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $dimension;
+  height: $dimension;
+  font-size: $fontSize;
+  background: $backgroundColor;
+  color: $color;
+  padding: $padding;
+  margin: $margin;
+  border-radius: $borderRadius;
+  @include border($border-1px, $backgroundColor);
+
+  &:hover {
+    background: $color;
+    color: $backgroundColor;
+    transition: $transition;
+  }
+}
