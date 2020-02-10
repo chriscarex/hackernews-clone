@@ -1,11 +1,4 @@
 .articles-wrapper {
-  // display: flex;
-  // flex-wrap: wrap;
-  // align-items: center;
-  // justify-content: center;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -28,14 +21,33 @@
 
     .article-card {
       display: flex;
-      // flex-wrap: wrap;
+      position: relative;
       align-items: center;
       justify-content: center;
       margin: 20px;
-      // width: 100%;
 
       &-container {
         padding: 0;
+      }
+
+      .icon-hide {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 100;
+        background: $white;
+        color: $primary-color;
+        opacity: 0.7;
+        border: 1px solid $primary-color;
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 40px;
+        cursor: pointer;
       }
 
       &-title {
@@ -61,36 +73,7 @@
         &-item {
           width: 33%;
         }
-        // &:nth-child(1) {
-        //   text-align: center;
-        // }
-        //
-        // &:nth-child(2) {
-        //   text-align: right;
-        // }
       }
-
-      // &-score {
-      //   width: 100%;
-      //   display: flex;
-      //   justify-content: space-between;
-      //   align-items: center;
-      // }
-
-      // .ui.card {
-      //   width: 200px;
-      // }
-      // max-width: 500px;
-
-      // .statistic {
-      //   padding: 20px;
-      //   width: 200px;
-      //   border-radius: 10px;
-      //   margin: 10px;
-      //   border: 1px solid $font-color;
-      //   color: $font-color;
-      //   @include box-shadow(2px, 2px, 1px, $font-color);
-      // }
     }
   }
 }

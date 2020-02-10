@@ -10,7 +10,9 @@ const setup = () => {
       by: 'test',
       title: 'test'
     }],
-    search: 'test'
+    hiddenArticles: [2],
+    search: 'test',
+    hide: () => {}
   }
 
   const component = shallow(<Articles {...props} />)
@@ -35,6 +37,6 @@ describe('Articles', () => {
 
     expect(title.props().children).toEqual('Displaying iatest Hackernews posts')
     expect(articles.props().article).toEqual(props.articles[0])
-    expect(articles.props().index).toEqual(0)
+    expect(typeof articles.props().hide).toEqual('function')
   })
 })

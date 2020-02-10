@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ArticleCard should render correctly: 
+      <div
+        className="article-card"
+        data-cy="article-card"
+      >
 <a
 href='http://test.com'
 target="_blank"
@@ -33,75 +37,89 @@ data-cy="article-card"
     </Card.Content>
   </Card>
 </a>
+<Icon
+  name="hide"
+  onClick={() => hide(index)}
+  className="icon-hide"
+/>
+</div>
  1`] = `
-<a
+<div
   className="article-card"
   data-cy="article-card"
-  href="http://test.com"
-  rel="noopener nofollow noreferrer"
-  target="_blank"
 >
-  <div
-    className="ui card article-card-container"
-    onClick={[Function]}
+  <a
+    href="http://test.com"
+    rel="noopener nofollow noreferrer"
+    target="_blank"
   >
     <div
-      className="content article-card-title"
-    >
-      Title
-    </div>
-    <div
-      className="extra content article-card-meta"
+      className="ui card article-card-container"
+      onClick={[Function]}
     >
       <div
-        className="article-card-meta-item"
+        className="content article-card-title"
       >
-        <i
-          aria-hidden="true"
-          className="user icon"
-          onClick={[Function]}
-        />
-         
-        author
+        Title
       </div>
       <div
-        className="article-card-meta-item"
+        className="extra content article-card-meta"
       >
-        <i
-          aria-hidden="true"
-          className="certificate icon"
-          onClick={[Function]}
-        />
-         
-        2
-      </div>
-      <div
-        className="article-card-item"
-      >
-        <i
-          aria-hidden="true"
-          className="clock icon"
-          onClick={[Function]}
-        />
-         
-        <time
-          dateTime={"1970-04-26T17:46:00.000Z"}
+        <div
+          className="article-card-meta-item"
         >
-          50 years ago
-        </time>
+          <i
+            aria-hidden="true"
+            className="user icon"
+            onClick={[Function]}
+          />
+           
+          author
+        </div>
+        <div
+          className="article-card-meta-item"
+        >
+          <i
+            aria-hidden="true"
+            className="certificate icon"
+            onClick={[Function]}
+          />
+           
+          2
+        </div>
+        <div
+          className="article-card-item"
+        >
+          <i
+            aria-hidden="true"
+            className="clock icon"
+            onClick={[Function]}
+          />
+           
+          <time
+            dateTime={"1970-04-26T17:46:00.000Z"}
+          >
+            50 years ago
+          </time>
+        </div>
+      </div>
+      <div
+        className="content article-card-item"
+      >
+        <i
+          aria-hidden="true"
+          className="globe icon"
+          onClick={[Function]}
+        />
+         
+        http://test.com
       </div>
     </div>
-    <div
-      className="content article-card-item"
-    >
-      <i
-        aria-hidden="true"
-        className="globe icon"
-        onClick={[Function]}
-      />
-       
-      http://test.com
-    </div>
-  </div>
-</a>
+  </a>
+  <i
+    aria-hidden="true"
+    className="hide icon icon-hide"
+    onClick={[Function]}
+  />
+</div>
 `;

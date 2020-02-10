@@ -38761,7 +38761,7 @@ module.exports = _defineProperty;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UPDATE_FILTERED_ARTICLES = exports.UPDATE_ORDER_FILTER = exports.UPDATE_SEARCH_FILTER = exports.UPDATE_SELECTED_ARTICLE = exports.ADD_ARTICLE = exports.UPDATE_ARTICLES = exports.RESET_NOTIFICATION = exports.SHOW_NOTIFICATION = exports.TOGGLE_SIDEBAR = exports.RESET_LOADER = exports.REMOVE_LOADER = exports.ADD_LOADER = void 0;
+exports.UPDATE_HIDDEN_ARTICLES = exports.UPDATE_SEARCH_FILTER = exports.UPDATE_SELECTED_ARTICLE = exports.ADD_ARTICLE = exports.UPDATE_ARTICLES = exports.RESET_NOTIFICATION = exports.SHOW_NOTIFICATION = exports.TOGGLE_SIDEBAR = exports.RESET_LOADER = exports.REMOVE_LOADER = exports.ADD_LOADER = void 0;
 var ADD_LOADER = 'ADD_LOADER';
 exports.ADD_LOADER = ADD_LOADER;
 var REMOVE_LOADER = 'REMOVE_LOADER';
@@ -38782,10 +38782,8 @@ var UPDATE_SELECTED_ARTICLE = 'UPDATE_SELECTED_ARTICLE';
 exports.UPDATE_SELECTED_ARTICLE = UPDATE_SELECTED_ARTICLE;
 var UPDATE_SEARCH_FILTER = 'UPDATE_SEARCH_FILTER';
 exports.UPDATE_SEARCH_FILTER = UPDATE_SEARCH_FILTER;
-var UPDATE_ORDER_FILTER = 'UPDATE_ORDER_FILTER';
-exports.UPDATE_ORDER_FILTER = UPDATE_ORDER_FILTER;
-var UPDATE_FILTERED_ARTICLES = 'UPDATE_FILTERED_ARTICLES';
-exports.UPDATE_FILTERED_ARTICLES = UPDATE_FILTERED_ARTICLES;
+var UPDATE_HIDDEN_ARTICLES = 'UPDATE_HIDDEN_ARTICLES';
+exports.UPDATE_HIDDEN_ARTICLES = UPDATE_HIDDEN_ARTICLES;
 },{}],"store/reducers/loader.js":[function(require,module,exports) {
 "use strict";
 
@@ -38808,7 +38806,7 @@ var initState = {
   active: 0,
   completed: 0,
   loadedArticles: 0,
-  totalArticles: 500
+  totalArticles: 100
 };
 
 var loader = function loader() {
@@ -38955,6 +38953,35 @@ var articles = function articles() {
 };
 
 exports.articles = articles;
+},{"constants/reducers":"constants/reducers.js"}],"store/reducers/hiddenArticles.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hiddenArticles = void 0;
+
+var _reducers = require("constants/reducers");
+
+/* eslint no-unused-vars:0 */
+var initState = [];
+
+var hiddenArticles = function hiddenArticles() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var type = action.type,
+      payload = action.payload;
+
+  switch (type) {
+    case _reducers.UPDATE_HIDDEN_ARTICLES:
+      return payload.value;
+
+    default:
+      return state;
+  }
+};
+
+exports.hiddenArticles = hiddenArticles;
 },{"constants/reducers":"constants/reducers.js"}],"store/reducers/filters.js":[function(require,module,exports) {
 "use strict";
 
@@ -39020,6 +39047,8 @@ var _sidebar = require("./sidebar");
 
 var _articles = require("./articles");
 
+var _hiddenArticles = require("./hiddenArticles");
+
 var _filters = require("./filters");
 
 var reducers = (0, _redux.combineReducers)({
@@ -39027,11 +39056,12 @@ var reducers = (0, _redux.combineReducers)({
   notification: _notification.notification,
   sidebar: _sidebar.sidebar,
   articles: _articles.articles,
+  hiddenArticles: _hiddenArticles.hiddenArticles,
   filters: _filters.filters
 });
 var _default = reducers;
 exports.default = _default;
-},{"redux":"../node_modules/redux/es/index.js","./loader":"store/reducers/loader.js","./notification":"store/reducers/notification.js","./sidebar":"store/reducers/sidebar.js","./articles":"store/reducers/articles.js","./filters":"store/reducers/filters.js"}],"store/index.js":[function(require,module,exports) {
+},{"redux":"../node_modules/redux/es/index.js","./loader":"store/reducers/loader.js","./notification":"store/reducers/notification.js","./sidebar":"store/reducers/sidebar.js","./articles":"store/reducers/articles.js","./hiddenArticles":"store/reducers/hiddenArticles.js","./filters":"store/reducers/filters.js"}],"store/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -90569,18 +90599,21 @@ var _moment = _interopRequireDefault(require("moment"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ArticleCard = function ArticleCard(_ref) {
-  var _ref$article = _ref.article,
+  var index = _ref.index,
+      _ref$article = _ref.article,
       by = _ref$article.by,
       score = _ref$article.score,
       time = _ref$article.time,
       title = _ref$article.title,
-      url = _ref$article.url;
-  return _react.default.createElement("a", {
-    href: url,
-    target: "_blank",
-    rel: "noopener nofollow noreferrer",
+      url = _ref$article.url,
+      hide = _ref.hide;
+  return _react.default.createElement("div", {
     className: "article-card",
     "data-cy": "article-card"
+  }, _react.default.createElement("a", {
+    href: url,
+    target: "_blank",
+    rel: "noopener nofollow noreferrer"
   }, _react.default.createElement(_semanticUiReact.Card, {
     className: "article-card-container"
   }, _react.default.createElement(_semanticUiReact.Card.Content, {
@@ -90606,11 +90639,18 @@ var ArticleCard = function ArticleCard(_ref) {
     className: "article-card-item"
   }, _react.default.createElement(_semanticUiReact.Icon, {
     name: "globe"
-  }), " ", url && url.length > 80 ? "".concat(url.substring(0, 80), "...") : url)));
+  }), " ", url && url.length > 80 ? "".concat(url.substring(0, 80), "...") : url))), _react.default.createElement(_semanticUiReact.Icon, {
+    name: "hide",
+    onClick: function onClick() {
+      return hide(index);
+    },
+    className: "icon-hide"
+  }));
 };
 
 exports.ArticleCard = ArticleCard;
 ArticleCard.propTypes = {
+  index: _propTypes.default.number.isRequired,
   article: _propTypes.default.shape({
     id: _propTypes.default.number,
     score: _propTypes.default.number,
@@ -90618,7 +90658,8 @@ ArticleCard.propTypes = {
     time: _propTypes.default.number,
     title: _propTypes.default.string,
     url: _propTypes.default.string
-  }).isRequired
+  }).isRequired,
+  hide: _propTypes.default.func.isRequired
 };
 var _default = ArticleCard;
 exports.default = _default;
@@ -90660,7 +90701,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Articles = function Articles(_ref) {
   var articles = _ref.articles,
-      search = _ref.search;
+      hiddenArticles = _ref.hiddenArticles,
+      search = _ref.search,
+      _hide = _ref.hide;
   return _react.default.createElement("div", {
     className: "articles-wrapper"
   }, _react.default.createElement("div", {
@@ -90673,9 +90716,11 @@ var Articles = function Articles(_ref) {
       row: article,
       searchFilter: search
     });
-    return rowContainsFilter ? _react.default.createElement(_ArticleCard.default, {
+    return rowContainsFilter && hiddenArticles.indexOf(index) === -1 ? _react.default.createElement(_ArticleCard.default, {
       article: article,
-      index: index,
+      hide: function hide() {
+        return _hide(index);
+      },
       key: "counter-".concat(index),
       "data-cy": "article-card"
     }) : null;
@@ -90684,7 +90729,9 @@ var Articles = function Articles(_ref) {
 
 Articles.propTypes = {
   articles: _propTypes.default.arrayOf(_propTypes.default.shape()).isRequired,
-  search: _propTypes.default.string.isRequired
+  hiddenArticles: _propTypes.default.arrayOf(_propTypes.default.number).isRequired,
+  search: _propTypes.default.string.isRequired,
+  hide: _propTypes.default.func.isRequired
 };
 var _default = Articles;
 exports.default = _default;
@@ -90702,15 +90749,21 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/creat
 
 var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+var _getPrototypeOf3 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactRedux = require("react-redux");
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _reducers = require("constants/reducers");
 
 var _actions = require("store/actions");
 
@@ -90728,65 +90781,44 @@ function (_PureComponent) {
   (0, _inherits2.default)(ArticlesContainer, _PureComponent);
 
   function ArticlesContainer() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     (0, _classCallCheck2.default)(this, ArticlesContainer);
-    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(ArticlesContainer).apply(this, arguments));
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(ArticlesContainer)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "hide", function (id) {
+      var _this$props = _this.props,
+          hiddenArticles = _this$props.hiddenArticles,
+          singleActionProp = _this$props.singleActionProp;
+      var updatedHiddenArticles = hiddenArticles.slice();
+      updatedHiddenArticles.push(id);
+      singleActionProp({
+        type: _reducers.UPDATE_HIDDEN_ARTICLES,
+        payload: {
+          value: updatedHiddenArticles
+        }
+      });
+    });
+    return _this;
   }
 
   (0, _createClass2.default)(ArticlesContainer, [{
     key: "render",
-    // componentDidUpdate(prevProps) {
-    //   const {
-    //     articles,
-    //     search
-    //   } = this.props
-    //
-    //   if (articles !== prevProps.articles
-    //     && search !== prevProps.search
-    //   ) {
-    //     this.getArticlesToDisplay()
-    //   }
-    // }
-    //
-    // getArticlesToDisplay = async () => {
-    //   const {
-    //     articles,
-    //     search,
-    //     singleActionProp
-    //   } = this.props
-    //
-    //   let articlesToDisplay = []
-    //
-    //   console.log({
-    //     articles,
-    //     search
-    //   })
-    //   if (search === '') {
-    //     articlesToDisplay = articles
-    //   } else {
-    //     for (let i = 0; i < articles.length; i++) {
-    //       const row = articles[i]
-    //       const rowContainsFilter = await isRowContainingString({
-    //         row,
-    //         searchFilter: search
-    //       })
-    //
-    //       if (rowContainsFilter) {
-    //         articlesToDisplay.push(row)
-    //       }
-    //     }
-    //   }
-    //
-    //   singleActionProp({
-    //     type: UPDATE_FILTERED_ARTICLES,
-    //     payload: { value: articlesToDisplay }
-    //   })
-    // }
     value: function render() {
-      var _this$props = this.props,
-          articles = _this$props.articles,
-          search = _this$props.search;
+      var _this$props2 = this.props,
+          articles = _this$props2.articles,
+          hiddenArticles = _this$props2.hiddenArticles,
+          search = _this$props2.search;
       return _react.default.createElement(_Articles.default, {
         articles: articles,
+        hiddenArticles: hiddenArticles,
+        hide: this.hide,
         search: search,
         "data-cy": "articles"
       });
@@ -90798,13 +90830,15 @@ function (_PureComponent) {
 exports.ArticlesContainer = ArticlesContainer;
 ArticlesContainer.propTypes = {
   articles: _propTypes.default.arrayOf(_propTypes.default.shape()).isRequired,
-  search: _propTypes.default.string.isRequired // singleActionProp: PropTypes.func.isRequired,
-
+  hiddenArticles: _propTypes.default.arrayOf(_propTypes.default.number).isRequired,
+  search: _propTypes.default.string.isRequired,
+  singleActionProp: _propTypes.default.func.isRequired
 };
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
     articles: state.articles,
+    hiddenArticles: state.hiddenArticles,
     search: state.filters.search
   };
 };
@@ -90820,7 +90854,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ArticlesContainer);
 
 exports.default = _default;
-},{"@babel/runtime/helpers/classCallCheck":"../node_modules/@babel/runtime/helpers/classCallCheck.js","@babel/runtime/helpers/createClass":"../node_modules/@babel/runtime/helpers/createClass.js","@babel/runtime/helpers/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js","@babel/runtime/helpers/getPrototypeOf":"../node_modules/@babel/runtime/helpers/getPrototypeOf.js","@babel/runtime/helpers/inherits":"../node_modules/@babel/runtime/helpers/inherits.js","react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","prop-types":"../node_modules/prop-types/index.js","store/actions":"store/actions/index.js","./Articles":"components/Articles/Articles.js"}],"components/Articles/index.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/classCallCheck":"../node_modules/@babel/runtime/helpers/classCallCheck.js","@babel/runtime/helpers/createClass":"../node_modules/@babel/runtime/helpers/createClass.js","@babel/runtime/helpers/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js","@babel/runtime/helpers/getPrototypeOf":"../node_modules/@babel/runtime/helpers/getPrototypeOf.js","@babel/runtime/helpers/assertThisInitialized":"../node_modules/@babel/runtime/helpers/assertThisInitialized.js","@babel/runtime/helpers/inherits":"../node_modules/@babel/runtime/helpers/inherits.js","@babel/runtime/helpers/defineProperty":"../node_modules/@babel/runtime/helpers/defineProperty.js","react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","prop-types":"../node_modules/prop-types/index.js","constants/reducers":"constants/reducers.js","store/actions":"store/actions/index.js","./Articles":"components/Articles/Articles.js"}],"components/Articles/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

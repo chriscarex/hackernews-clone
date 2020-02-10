@@ -17,6 +17,10 @@ describe('ArticleCard', () => {
     .toJSON()
 
     expect(tree).toMatchSnapshot(`
+      <div
+        className="article-card"
+        data-cy="article-card"
+      >
 <a
 href='http://test.com'
 target="_blank"
@@ -49,6 +53,12 @@ data-cy="article-card"
     </Card.Content>
   </Card>
 </a>
+<Icon
+  name="hide"
+  onClick={() => hide(index)}
+  className="icon-hide"
+/>
+</div>
 `)
   })
 })

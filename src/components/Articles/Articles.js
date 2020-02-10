@@ -8,7 +8,9 @@ import ArticleCard from '../ArticleCard'
 
 const Articles = ({
   articles,
-  search
+  hiddenArticles,
+  search,
+  hide
 }) => (
   <div className="articles-wrapper">
     <div
@@ -28,10 +30,10 @@ const Articles = ({
                 searchFilter: search
               })
 
-              return rowContainsFilter ? (
+              return rowContainsFilter && hiddenArticles.indexOf(index) === -1 ? (
                 <ArticleCard
                   article={article}
-                  index={index}
+                  hide={() => hide(index)}
                   key={`counter-${index}`}
                   data-cy="article-card"
                 />
@@ -44,7 +46,9 @@ const Articles = ({
 
 Articles.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  hiddenArticles: PropTypes.arrayOf(PropTypes.number).isRequired,
   search: PropTypes.string.isRequired,
+  hide: PropTypes.func.isRequired,
 }
 
 export default Articles

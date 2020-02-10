@@ -38,7 +38,7 @@ describe('loader reducer', () => {
       active: 0,
       completed: 0,
       loadedArticles: 0,
-      totalArticles: 500
+      totalArticles: 100
     }
     expect(input).toEqual(output)
   })
