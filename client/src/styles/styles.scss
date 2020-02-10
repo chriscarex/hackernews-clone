@@ -38,6 +38,8 @@ body {
 
 .main-container {
   display: flex;
+  justify-content:  center;
+  align-items: flex-start;
   height: calc(100% - #{$header-height});
 }
 
@@ -48,5 +50,5 @@ body {
 @import './components/icons.scss';
 @import './components/header.scss';
 @import './components/sidebar.scss';
-@import './components/dashboard.scss';
+@import './components/articles.scss';
 @import './components/form.scss';

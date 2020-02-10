@@ -47,7 +47,7 @@ export class HeaderContainer extends Component {
 
     if (listOfIDs.length > 0) {
       // for (let i = 0; i < listOfIDs.length; i++) {
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 3; i++) {
         const id = listOfIDs[i]
 
         const endpointId = `${BASE_ENDPOINT}${ENDPOINT_ARTICLE}${id}.json`

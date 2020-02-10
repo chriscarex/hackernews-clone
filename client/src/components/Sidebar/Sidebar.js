@@ -13,7 +13,7 @@ const Sidebar = ({
       >
         TEST
       </div>
-)}
+    )}
   </>
 )
 
