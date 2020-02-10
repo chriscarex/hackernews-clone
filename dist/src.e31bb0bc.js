@@ -34507,8 +34507,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _default = _MemoryRouter.default;
 exports.default = _default;
 },{"react-router/es/MemoryRouter":"../node_modules/react-router/es/MemoryRouter.js"}],"../node_modules/isarray/index.js":[function(require,module,exports) {
+var toString = {}.toString;
+
 module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
+  return toString.call(arr) == '[object Array]';
 };
 
 },{}],"../node_modules/path-to-regexp/index.js":[function(require,module,exports) {
@@ -84037,7 +84039,7 @@ function (_Component) {
                 i = 0;
 
               case 11:
-                if (!(i < 3)) {
+                if (!(i < 100)) {
                   _context2.next = 16;
                   break;
                 }
@@ -91070,7 +91072,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64554" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65524" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -12,17 +12,17 @@ Hackernews News reader with possibility to filter through the last 500 top artic
 
 ```bash
 	git clone LINK_TO_GIT
-  npm install
-  npm run dev
+  yarn install
+  yarn run dev
 ```
 
 ## Testing
 
 ```bash
-  npm run test  (for unit test)
-	npm run test:watch  (for unit test in watch mode)
-	npm run test:coverage  (for unit test with coverage)
-  npm run cy:open    (for integration tests)
+  yarn run test  (for unit test)
+	yarn run test:watch  (for unit test in watch mode)
+	yarn run test:coverage  (for unit test with coverage)
+  yarn run cy:open    (for integration tests)
 ```
 
 ## Objective

@@ -74,7 +74,7 @@
     "pretty": "prettier --write \"src/**/*.js\"",
     "postcommit": "git update-index -g",
     "lint": "eslint ./src \"./*.js\"",
-    "lint:watch": "npm run lint -- --watch",
+    "lint:watch": "yarn run lint -- --watch",
     "lint:fix": "eslint --fix ./src "
   },
   "alias": {
@@ -117,7 +117,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint:fix && npm run test",
+      "pre-commit": "yarn run lint:fix && yarn run test",
       "post-commit": "git update-index -g"
     }
   }
