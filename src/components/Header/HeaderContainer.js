@@ -11,7 +11,8 @@ import {
   TOGGLE_SIDEBAR,
   UPDATE_ARTICLES,
   ADD_LOADER,
-  REMOVE_LOADER
+  REMOVE_LOADER,
+  ADD_ARTICLE
 } from 'constants/reducers'
 import {
   BASE_ENDPOINT,
@@ -45,10 +46,11 @@ export class HeaderContainer extends Component {
     })
 
     if (listOfIDs.length > 0) {
-      for (let i = 0; i < listOfIDs.length; i++) {
+      // for (let i = 0; i < listOfIDs.length; i++) {
+      for (let i = 0; i < 3; i++) {
         const id = listOfIDs[i]
 
-        const endpointId = `${BASE_ENDPOINT}${ENDPOINT_ARTICLE}${id}`
+        const endpointId = `${BASE_ENDPOINT}${ENDPOINT_ARTICLE}${id}.json`
 
         const getArticle = () =>
           sendGetRequest({
@@ -61,6 +63,10 @@ export class HeaderContainer extends Component {
         })
 
         if (articleInfo) {
+          singleActionProp({
+            type: ADD_ARTICLE
+          })
+
           articles.push(articleInfo)
         }
       }

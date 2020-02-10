@@ -5,18 +5,27 @@ import { Dimmer, Loader } from 'semantic-ui-react'
 
 export const FullPageLoader = ({
  loader: {
-  active, completed
+  active,
+  loadedArticles,
+  totalArticles,
+  completed
 }
 }) => (
   <Dimmer active={active > completed} data-cy="loader">
-    <Loader />
+    <Loader
+      data-cy="message"
+    >
+      Loading {loadedArticles} of {totalArticles} articles
+    </Loader>
   </Dimmer>
 )
 
 FullPageLoader.propTypes = {
   loader: PropTypes.shape({
     active: PropTypes.number,
-    completed: PropTypes.number
+    completed: PropTypes.number,
+    loadedArticles: PropTypes.number,
+    totalArticles: PropTypes.number
   }).isRequired,
 }
 

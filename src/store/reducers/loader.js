@@ -1,13 +1,16 @@
 import {
   // TOGGLE_LOADER,
   ADD_LOADER,
+  ADD_ARTICLE,
   REMOVE_LOADER,
   RESET_LOADER
  } from 'constants/reducers'
 
 const initState = {
   active: 0,
-  completed: 0
+  completed: 0,
+  loadedArticles: 0,
+  totalArticles: 500
 }
 
 export const loader = (state = initState, action) => {
@@ -24,6 +27,11 @@ export const loader = (state = initState, action) => {
       return {
         ...state,
         completed: state.completed + 1
+      }
+    case ADD_ARTICLE:
+      return {
+        ...state,
+        loadedArticles: state.loadedArticles + 1
       }
     case RESET_LOADER:
       return JSON.parse(JSON.stringify(initState))

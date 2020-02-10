@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Input, Form, Radio } from 'semantic-ui-react'
 
 const Sidebar = ({
-  isSidebarVisible
+  isSidebarVisible,
+  searchValue,
+  onInput
 }) => (
   <>
     {isSidebarVisible
@@ -11,14 +14,27 @@ const Sidebar = ({
         className="sidebar-wrapper"
         data-cy="sidebar"
       >
-        TEST
+
+        <div
+          className="sidebar-input-wrapper"
+        >
+          <Input
+            data-cy="sidebar-input"
+            value={searchValue}
+            icon="search"
+            placeholder="Search..."
+            onInput={onInput}
+          />
+        </div>
       </div>
-)}
+    )}
   </>
 )
 
 Sidebar.propTypes = {
-  isSidebarVisible: PropTypes.bool.isRequired
+  isSidebarVisible: PropTypes.bool.isRequired,
+  searchValue: PropTypes.string.isRequired,
+  onInput: PropTypes.func.isRequired,
 }
 
 export default Sidebar
