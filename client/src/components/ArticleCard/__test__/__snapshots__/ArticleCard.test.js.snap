@@ -28,6 +28,112 @@ data-cy="article-card"
         </time>
       </div>
     </Card.Content>
+    <Card.Content className="article-card-item">
+    <Icon name="globe" /> http://test.com
+    </Card.Content>
+  </Card>
+</a>
+ 1`] = `
+<a
+  className="article-card"
+  data-cy="article-card"
+  href="http://test.com"
+  rel="noopener nofollow noreferrer"
+  target="_blank"
+>
+  <div
+    className="ui card article-card-container"
+    onClick={[Function]}
+  >
+    <div
+      className="content article-card-title"
+    >
+      Title
+    </div>
+    <div
+      className="extra content article-card-meta"
+    >
+      <div
+        className="article-card-meta-item"
+      >
+        <i
+          aria-hidden="true"
+          className="user icon"
+          onClick={[Function]}
+        />
+         
+        author
+      </div>
+      <div
+        className="article-card-meta-item"
+      >
+        <i
+          aria-hidden="true"
+          className="certificate icon"
+          onClick={[Function]}
+        />
+         
+        2
+      </div>
+      <div
+        className="article-card-item"
+      >
+        <i
+          aria-hidden="true"
+          className="clock icon"
+          onClick={[Function]}
+        />
+         
+        <time
+          dateTime={"1970-04-26T17:46:00.000Z"}
+        >
+          50 years ago
+        </time>
+      </div>
+    </div>
+    <div
+      className="content article-card-item"
+    >
+      <i
+        aria-hidden="true"
+        className="globe icon"
+        onClick={[Function]}
+      />
+       
+      http://test.com
+    </div>
+  </div>
+</a>
+`;
+
+exports[`ArticleCard should render correctly: 
+<a
+href='http://test.com'
+target="_blank"
+rel="noopener nofollow noreferrer"
+className="article-card"
+data-cy="article-card"
+>
+  <Card className="article-card-container">
+    <Card.Content className="article-card-title">{title}</Card.Content>
+    <Card.Content extra className="article-card-meta">
+      <div className="article-card-meta-item">
+        <Icon name="user" /> author
+      </div>
+
+      <div className="article-card-meta-item">
+        <Icon name="certificate" /> 2
+      </div>
+
+      <div className="article-card-item">
+        <Icon name="clock" />
+        <time
+           dateTime={"1970-04-26T17:46:00.000Z"}
+        >
+         50 years ago
+        </time>
+      </div>
+    </Card.Content>
     <Card.Content>
     <Icon name="globe" /> http://test.com
     </Card.Content>

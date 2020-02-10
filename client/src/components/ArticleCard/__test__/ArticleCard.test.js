@@ -1,26 +1,6 @@
 import React from 'react'
-// import { shallow } from 'enzyme'
 import renderer from 'react-test-renderer'
-import moment from 'moment'
 import { ArticleCard } from '../ArticleCard'
-
-// const setup = () => {
-//   const props = {
-//     article: {
-//       by: 'authry',
-//       score: 2,
-//       time: '10000000',
-//       title: 'Title',
-//       url: 'http://test.com'
-//     }
-//   }
-//
-//   const component = shallow(<ArticleCard {...props} />)
-//
-//   return {
-//     component
-//   }
-// }
 
 describe('ArticleCard', () => {
   it('should render correctly', () => {
@@ -64,7 +44,7 @@ data-cy="article-card"
         </time>
       </div>
     </Card.Content>
-    <Card.Content>
+    <Card.Content className="article-card-item">
     <Icon name="globe" /> http://test.com
     </Card.Content>
   </Card>

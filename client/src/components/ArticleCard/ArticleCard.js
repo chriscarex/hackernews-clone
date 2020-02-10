@@ -37,7 +37,7 @@ export const ArticleCard = ({
       </Card.Content>
       {url
           && (
-          <Card.Content>
+          <Card.Content className="article-card-item">
             <Icon name="globe" /> {url && url.length > 80 ? `${url.substring(0, 80)}...` : url}
           </Card.Content>
         )}

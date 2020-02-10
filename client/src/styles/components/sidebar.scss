@@ -5,7 +5,7 @@
   left: 0;
   bottom: 0;
   width: 280px;
-  background: $secondary-color;
+  background: $light-grey;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -20,31 +20,23 @@
     opacity: 0.9;
   }
 
-  .sidebar-copyright {
+  .sidebar-input-wrapper {
+    margin-top: 20px;
     width: 100%;
-    color: $white;
-    font-size: 13px;
-    word-wrap: break-word;
-    padding: 14px;
-
-    a {
-      color: $white;
-
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .sidebar-link {
+  .sidebar-order-wrapper {
+    margin-top: 20px;
     width: 100%;
-    color: $white;
-    font-size: 16px;
-    word-wrap: break-word;
-    padding: 14px;
-    border-bottom: 1px solid $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    &:hover {
-      background: $white;
-      color: $secondary-color;
-      transition: $transition;
-    }
+  .sidebar-order-title {
+    color: $font-color;
   }
 }
