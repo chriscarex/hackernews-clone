@@ -2,8 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { stub } from 'sinon'
 import {
-  UPDATE_SEARCH_FILTER,
-  UPDATE_ORDER_FILTER
+  UPDATE_SEARCH_FILTER
 } from 'constants/reducers'
 import { SidebarContainer } from '../SidebarContainer'
 
