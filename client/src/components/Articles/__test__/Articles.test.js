@@ -6,8 +6,11 @@ const setup = () => {
   const props = {
     articles: [{
       value: 'http://test.com/',
-      id: 1
-    }]
+      id: 1,
+      by: 'test',
+      title: 'test'
+    }],
+    search: 'test'
   }
 
   const component = shallow(<Articles {...props} />)

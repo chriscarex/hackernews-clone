@@ -3,8 +3,8 @@ import { isRowContainingString } from '..'
 describe('isRowContainingString', () => {
   it('should return true when search filter is empty', async () => {
     const row = {
-      staff: 'test1',
-      user: 'test2'
+      by: 'test1',
+      title: 'test2'
     }
     const searchFilter = ''
 
@@ -33,8 +33,8 @@ describe('isRowContainingString', () => {
 
   it('should return false', async () => {
     const row = {
-      staff: 'test1',
-      user: 'test2'
+      by: 'test1',
+      title: 'test2'
     }
 
     const searchFilter = 'search'

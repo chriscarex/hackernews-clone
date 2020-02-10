@@ -7,10 +7,7 @@ import { filters } from '../filters'
 describe('filters reducer', () => {
   it('default should work', () => {
     const input = filters({}, { type: 'default' })
-    const output = {
-      search: '',
-      order: 'newest'
-    }
+    const output = {}
     expect(input).toMatchObject(output)
   })
 

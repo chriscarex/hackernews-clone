@@ -14,9 +14,7 @@ const setup = () => {
   const props = {
     isSidebarVisible: true,
     searchValue: 'test',
-    order: 'newer',
     onInput: () => {},
-    onChange: () => {},
     singleActionProp: singleActionPropStub
   }
 
@@ -35,7 +33,6 @@ describe('SidebarContainer', () => {
 
     expect(sidebar.props().isSidebarVisible).toEqual(true)
     expect(sidebar.props().searchValue).toEqual('test')
-    expect(sidebar.props().order).toEqual('newer')
     expect(typeof sidebar.props().onInput).toEqual('function')
   })
 
@@ -52,23 +49,6 @@ describe('SidebarContainer', () => {
       expect(singleActionPropStub.called).toBe(true)
       expect(singleActionPropStub.args[0][0]).toMatchObject(
         { payload: { value: 'test' }, type: UPDATE_SEARCH_FILTER }
-      )
-    })
-  })
-
-  describe('onChange', () => {
-    afterEach(() => {
-      singleActionPropStub.resetHistory()
-    })
-
-    it('toggleSidebar should call the right functions', async () => {
-      const { sidebar } = await setup()
-
-      await sidebar.props().onChange({}, { value: 'newest' })
-
-      expect(singleActionPropStub.called).toBe(true)
-      expect(singleActionPropStub.args[0][0]).toMatchObject(
-        { payload: { value: 'newest' }, type: UPDATE_ORDER_FILTER }
       )
     })
   })
