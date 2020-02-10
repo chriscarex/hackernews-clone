@@ -5,9 +5,7 @@ import { Input, Form, Radio } from 'semantic-ui-react'
 const Sidebar = ({
   isSidebarVisible,
   searchValue,
-  onInput,
-  order,
-  onChange
+  onInput
 }) => (
   <>
     {isSidebarVisible
@@ -28,37 +26,6 @@ const Sidebar = ({
             onInput={onInput}
           />
         </div>
-
-        <div
-          className="sidebar-order-wrapper"
-        >
-          <Form>
-            <Form.Field
-              className="sidebar-order-title"
-            >
-              Order by
-            </Form.Field>
-            <Form.Field>
-              <Radio
-                data-cy="sidebar-radio"
-                label="Newest"
-                name="radioGroup"
-                value="newest"
-                checked={order === 'newest'}
-                onChange={onChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <Radio
-                label="Oldest"
-                name="radioGroup"
-                value="oldest"
-                checked={order === 'oldest'}
-                onChange={onChange}
-              />
-            </Form.Field>
-          </Form>
-        </div>
       </div>
     )}
   </>
@@ -67,9 +34,7 @@ const Sidebar = ({
 Sidebar.propTypes = {
   isSidebarVisible: PropTypes.bool.isRequired,
   searchValue: PropTypes.string.isRequired,
-  order: PropTypes.string.isRequired,
   onInput: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
 }
 
 export default Sidebar

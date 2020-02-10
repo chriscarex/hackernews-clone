@@ -46,16 +46,14 @@ export const ArticleCard = ({
 )
 
 ArticleCard.propTypes = {
-  // index: PropTypes.number.isRequired,
   article: PropTypes.shape({
     id: PropTypes.number,
     score: PropTypes.number,
     by: PropTypes.string,
     time: PropTypes.number,
     title: PropTypes.string,
-    // descendants: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
 }
 
-export default ArticleCard // withRouter(ArticleCard)
+export default ArticleCard

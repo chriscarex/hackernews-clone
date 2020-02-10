@@ -1,21 +1,18 @@
-import fast from 'fast.js'
-
 export const isRowContainingString = ({
   row,
-  headerData,
   searchFilter
 }) => {
   if (searchFilter.length === 0) {
     return true
   }
 
-  let isRowValid = false
+  if (row.by.indexOf(searchFilter) > -1) {
+    return true
+  }
 
-  fast.map(headerData, (headerKey) => {
-    if (row[headerKey] && row[headerKey].toString().toLowerCase().includes(searchFilter)) {
-      isRowValid = true
-    }
-  })
+  if (row.title.indexOf(searchFilter) > -1) {
+    return true
+  }
 
-  return isRowValid
+  return false
 }

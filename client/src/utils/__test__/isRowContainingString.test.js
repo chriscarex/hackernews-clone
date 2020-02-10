@@ -6,12 +6,25 @@ describe('isRowContainingString', () => {
       staff: 'test1',
       user: 'test2'
     }
-    const headerData = ['staff', 'user']
     const searchFilter = ''
 
     const output = await isRowContainingString({
       row,
-      headerData,
+      searchFilter
+    })
+
+    expect(output).toEqual(true)
+  })
+
+  it('should return true when key contains search filte', async () => {
+    const row = {
+      by: 'test1',
+      title: 'test2'
+    }
+    const searchFilter = 'tes'
+
+    const output = await isRowContainingString({
+      row,
       searchFilter
     })
 
@@ -23,32 +36,14 @@ describe('isRowContainingString', () => {
       staff: 'test1',
       user: 'test2'
     }
-    const headerData = ['staff', 'user']
+
     const searchFilter = 'search'
 
     const output = await isRowContainingString({
       row,
-      headerData,
       searchFilter
     })
 
     expect(output).toEqual(false)
-  })
-
-  it('should return true', async () => {
-    const row = {
-      staff: 'test1',
-      user: 'test2'
-    }
-    const headerData = ['staff', 'user']
-    const searchFilter = 'te'
-
-    const output = await isRowContainingString({
-      row,
-      headerData,
-      searchFilter
-    })
-
-    expect(output).toEqual(true)
   })
 })

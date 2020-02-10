@@ -23,6 +23,6 @@ export const filters = (state = initState, action) => {
         order: payload.value
       }
     default:
-      return JSON.parse(JSON.stringify(initState))
+      return state
   }
 }

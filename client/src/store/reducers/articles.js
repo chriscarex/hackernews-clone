@@ -9,6 +9,6 @@ export const articles = (state = initState, action) => {
     case UPDATE_ARTICLES:
       return payload.value
     default:
-      return JSON.parse(JSON.stringify(initState))
+      return state
   }
 }
