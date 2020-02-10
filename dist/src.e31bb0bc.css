@@ -496,6 +496,34 @@ body {
   align-items: center;
   justify-content: center;
 }
+.sidebar-wrapper .sidebar-hidden-title {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5D5C61;
+  margin-top: 20px;
+  margin-bottom: 7px;
+}
+.sidebar-wrapper .sidebar-hidden-labels {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.sidebar-wrapper .sidebar-hidden-labels .label {
+  width: 100%;
+  border-top: 1px solid #818a91;
+  border-bottom: 1px solid #818a91;
+  margin-top: -1px;
+}
+.sidebar-wrapper .sidebar-hidden-labels .icon-remove {
+  cursor: pointer;
+}
 
 .articles-wrapper {
   width: 100%;

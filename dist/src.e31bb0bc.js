@@ -84136,244 +84136,7 @@ Object.defineProperty(exports, "default", {
 var _HeaderContainer = _interopRequireDefault(require("./HeaderContainer"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./HeaderContainer":"components/Header/HeaderContainer.js"}],"components/Sidebar/Sidebar.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _semanticUiReact = require("semantic-ui-react");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Sidebar = function Sidebar(_ref) {
-  var isSidebarVisible = _ref.isSidebarVisible,
-      searchValue = _ref.searchValue,
-      onInput = _ref.onInput;
-  return _react.default.createElement(_react.default.Fragment, null, isSidebarVisible && _react.default.createElement("div", {
-    className: "sidebar-wrapper",
-    "data-cy": "sidebar"
-  }, _react.default.createElement("div", {
-    className: "sidebar-input-wrapper"
-  }, _react.default.createElement(_semanticUiReact.Input, {
-    "data-cy": "sidebar-input",
-    value: searchValue,
-    icon: "search",
-    placeholder: "Search...",
-    onInput: onInput
-  }))));
-};
-
-Sidebar.propTypes = {
-  isSidebarVisible: _propTypes.default.bool.isRequired,
-  searchValue: _propTypes.default.string.isRequired,
-  onInput: _propTypes.default.func.isRequired
-};
-var _default = Sidebar;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","semantic-ui-react":"../node_modules/semantic-ui-react/dist/es/index.js"}],"components/Sidebar/SidebarContainer.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.SidebarContainer = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
-
-var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf3 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
-var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
-
-var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
-
-var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRedux = require("react-redux");
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _reactRouterDom = require("react-router-dom");
-
-var _actions = require("store/actions");
-
-var _reducers = require("constants/reducers");
-
-var _Sidebar = _interopRequireDefault(require("./Sidebar"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var SidebarContainer =
-/*#__PURE__*/
-function (_PureComponent) {
-  (0, _inherits2.default)(SidebarContainer, _PureComponent);
-
-  function SidebarContainer() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    (0, _classCallCheck2.default)(this, SidebarContainer);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(SidebarContainer)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onInput", function (e) {
-      var singleActionProp = _this.props.singleActionProp;
-      singleActionProp({
-        type: _reducers.UPDATE_SEARCH_FILTER,
-        payload: {
-          value: e.target.value
-        }
-      });
-    });
-    return _this;
-  }
-
-  (0, _createClass2.default)(SidebarContainer, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          isSidebarVisible = _this$props.isSidebarVisible,
-          searchValue = _this$props.searchValue;
-      return _react.default.createElement(_Sidebar.default, {
-        "data-cy": "sidebar",
-        isSidebarVisible: isSidebarVisible,
-        searchValue: searchValue,
-        onInput: this.onInput
-      });
-    }
-  }]);
-  return SidebarContainer;
-}(_react.PureComponent);
-
-exports.SidebarContainer = SidebarContainer;
-SidebarContainer.propTypes = {
-  isSidebarVisible: _propTypes.default.bool.isRequired,
-  searchValue: _propTypes.default.string.isRequired,
-  singleActionProp: _propTypes.default.func.isRequired
-};
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    isSidebarVisible: state.sidebar.visible,
-    searchValue: state.filters.search
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    singleActionProp: function singleActionProp(props) {
-      return dispatch((0, _actions.singleAction)(props));
-    }
-  };
-};
-
-var _default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SidebarContainer));
-
-exports.default = _default;
-},{"@babel/runtime/helpers/classCallCheck":"../node_modules/@babel/runtime/helpers/classCallCheck.js","@babel/runtime/helpers/createClass":"../node_modules/@babel/runtime/helpers/createClass.js","@babel/runtime/helpers/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js","@babel/runtime/helpers/getPrototypeOf":"../node_modules/@babel/runtime/helpers/getPrototypeOf.js","@babel/runtime/helpers/assertThisInitialized":"../node_modules/@babel/runtime/helpers/assertThisInitialized.js","@babel/runtime/helpers/inherits":"../node_modules/@babel/runtime/helpers/inherits.js","@babel/runtime/helpers/defineProperty":"../node_modules/@babel/runtime/helpers/defineProperty.js","react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/es/index.js","store/actions":"store/actions/index.js","constants/reducers":"constants/reducers.js","./Sidebar":"components/Sidebar/Sidebar.js"}],"components/Sidebar/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "default", {
-  enumerable: true,
-  get: function () {
-    return _SidebarContainer.default;
-  }
-});
-
-var _SidebarContainer = _interopRequireDefault(require("./SidebarContainer"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./SidebarContainer":"components/Sidebar/SidebarContainer.js"}],"components/FullPageLoader/FullPageLoader.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.FullPageLoader = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _reactRedux = require("react-redux");
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _semanticUiReact = require("semantic-ui-react");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var FullPageLoader = function FullPageLoader(_ref) {
-  var _ref$loader = _ref.loader,
-      active = _ref$loader.active,
-      loadedArticles = _ref$loader.loadedArticles,
-      totalArticles = _ref$loader.totalArticles,
-      completed = _ref$loader.completed;
-  return _react.default.createElement(_semanticUiReact.Dimmer, {
-    active: active > completed,
-    "data-cy": "loader"
-  }, _react.default.createElement(_semanticUiReact.Loader, {
-    "data-cy": "message"
-  }, "Loading ", loadedArticles, " of ", totalArticles, " articles"));
-};
-
-exports.FullPageLoader = FullPageLoader;
-FullPageLoader.propTypes = {
-  loader: _propTypes.default.shape({
-    active: _propTypes.default.number,
-    completed: _propTypes.default.number,
-    loadedArticles: _propTypes.default.number,
-    totalArticles: _propTypes.default.number
-  }).isRequired
-};
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    loader: state.loader
-  };
-};
-
-var _default = (0, _reactRedux.connect)(mapStateToProps)(FullPageLoader);
-
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","prop-types":"../node_modules/prop-types/index.js","semantic-ui-react":"../node_modules/semantic-ui-react/dist/es/index.js"}],"components/FullPageLoader/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "default", {
-  enumerable: true,
-  get: function () {
-    return _FullPageLoader.default;
-  }
-});
-
-var _FullPageLoader = _interopRequireDefault(require("./FullPageLoader"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./FullPageLoader":"components/FullPageLoader/FullPageLoader.js"}],"../node_modules/fast.js/array/clone.js":[function(require,module,exports) {
+},{"./HeaderContainer":"components/Header/HeaderContainer.js"}],"../node_modules/fast.js/array/clone.js":[function(require,module,exports) {
 'use strict';
 
 /**
@@ -85820,7 +85583,290 @@ Object.defineProperty(Fast.prototype, 'length', {
   }
 });
 
-},{"./array":"../node_modules/fast.js/array/index.js","./function":"../node_modules/fast.js/function/index.js","./object":"../node_modules/fast.js/object/index.js","./string":"../node_modules/fast.js/string/index.js","./clone":"../node_modules/fast.js/clone.js","./map":"../node_modules/fast.js/map.js","./filter":"../node_modules/fast.js/filter.js","./forEach":"../node_modules/fast.js/forEach.js","./reduce":"../node_modules/fast.js/reduce.js","./reduceRight":"../node_modules/fast.js/reduceRight.js"}],"utils/localStorage.js":[function(require,module,exports) {
+},{"./array":"../node_modules/fast.js/array/index.js","./function":"../node_modules/fast.js/function/index.js","./object":"../node_modules/fast.js/object/index.js","./string":"../node_modules/fast.js/string/index.js","./clone":"../node_modules/fast.js/clone.js","./map":"../node_modules/fast.js/map.js","./filter":"../node_modules/fast.js/filter.js","./forEach":"../node_modules/fast.js/forEach.js","./reduce":"../node_modules/fast.js/reduce.js","./reduceRight":"../node_modules/fast.js/reduceRight.js"}],"components/Sidebar/Sidebar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _semanticUiReact = require("semantic-ui-react");
+
+var _fast = _interopRequireDefault(require("fast.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Sidebar = function Sidebar(_ref) {
+  var isSidebarVisible = _ref.isSidebarVisible,
+      searchValue = _ref.searchValue,
+      articles = _ref.articles,
+      hiddenArticles = _ref.hiddenArticles,
+      removeFromHide = _ref.removeFromHide,
+      onInput = _ref.onInput;
+  return _react.default.createElement(_react.default.Fragment, null, isSidebarVisible && _react.default.createElement("div", {
+    className: "sidebar-wrapper",
+    "data-cy": "sidebar"
+  }, _react.default.createElement("div", {
+    className: "sidebar-input-wrapper"
+  }, _react.default.createElement(_semanticUiReact.Input, {
+    "data-cy": "sidebar-input",
+    value: searchValue,
+    icon: "search",
+    placeholder: "Search...",
+    onInput: onInput
+  })), hiddenArticles.length > 0 && _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
+    className: "sidebar-hidden-title"
+  }, "Hidden articles"), _react.default.createElement("div", {
+    className: "sidebar-hidden-labels"
+  }, _fast.default.map(hiddenArticles, function (articleIndex) {
+    return _react.default.createElement(_semanticUiReact.Label, {
+      key: "label-".concat(articleIndex)
+    }, _react.default.createElement(_semanticUiReact.Icon, {
+      name: "remove",
+      "data-cy": "hidden-article-icon",
+      className: "icon-remove",
+      onClick: function onClick() {
+        return removeFromHide(articleIndex);
+      }
+    }), " ", articles[articleIndex].title);
+  })))));
+};
+
+Sidebar.propTypes = {
+  hiddenArticles: _propTypes.default.arrayOf(_propTypes.default.number).isRequired,
+  articles: _propTypes.default.arrayOf(_propTypes.default.shape()).isRequired,
+  isSidebarVisible: _propTypes.default.bool.isRequired,
+  removeFromHide: _propTypes.default.func.isRequired,
+  searchValue: _propTypes.default.string.isRequired,
+  onInput: _propTypes.default.func.isRequired
+};
+var _default = Sidebar;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","semantic-ui-react":"../node_modules/semantic-ui-react/dist/es/index.js","fast.js":"../node_modules/fast.js/index.js"}],"components/Sidebar/SidebarContainer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.SidebarContainer = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf3 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
+
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRedux = require("react-redux");
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _actions = require("store/actions");
+
+var _reducers = require("constants/reducers");
+
+var _Sidebar = _interopRequireDefault(require("./Sidebar"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SidebarContainer =
+/*#__PURE__*/
+function (_PureComponent) {
+  (0, _inherits2.default)(SidebarContainer, _PureComponent);
+
+  function SidebarContainer() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    (0, _classCallCheck2.default)(this, SidebarContainer);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(SidebarContainer)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onInput", function (e) {
+      var singleActionProp = _this.props.singleActionProp;
+      singleActionProp({
+        type: _reducers.UPDATE_SEARCH_FILTER,
+        payload: {
+          value: e.target.value
+        }
+      });
+    });
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "removeFromHide", function (id) {
+      var _this$props = _this.props,
+          singleActionProp = _this$props.singleActionProp,
+          hiddenArticles = _this$props.hiddenArticles;
+      var hiddenArticlesCopy = hiddenArticles.slice();
+      var currentIndex = hiddenArticlesCopy.indexOf(id);
+      hiddenArticlesCopy.splice(currentIndex, 1);
+      singleActionProp({
+        type: _reducers.UPDATE_HIDDEN_ARTICLES,
+        payload: {
+          value: hiddenArticlesCopy
+        }
+      });
+    });
+    return _this;
+  }
+
+  (0, _createClass2.default)(SidebarContainer, [{
+    key: "render",
+    value: function render() {
+      var _this$props2 = this.props,
+          isSidebarVisible = _this$props2.isSidebarVisible,
+          searchValue = _this$props2.searchValue,
+          hiddenArticles = _this$props2.hiddenArticles,
+          articles = _this$props2.articles;
+      return _react.default.createElement(_Sidebar.default, {
+        "data-cy": "sidebar",
+        isSidebarVisible: isSidebarVisible,
+        searchValue: searchValue,
+        hiddenArticles: hiddenArticles,
+        articles: articles,
+        onInput: this.onInput,
+        removeFromHide: this.removeFromHide
+      });
+    }
+  }]);
+  return SidebarContainer;
+}(_react.PureComponent);
+
+exports.SidebarContainer = SidebarContainer;
+SidebarContainer.propTypes = {
+  isSidebarVisible: _propTypes.default.bool.isRequired,
+  hiddenArticles: _propTypes.default.arrayOf(_propTypes.default.number).isRequired,
+  articles: _propTypes.default.arrayOf(_propTypes.default.shape()).isRequired,
+  searchValue: _propTypes.default.string.isRequired,
+  singleActionProp: _propTypes.default.func.isRequired
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    isSidebarVisible: state.sidebar.visible,
+    searchValue: state.filters.search,
+    hiddenArticles: state.hiddenArticles,
+    articles: state.articles
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    singleActionProp: function singleActionProp(props) {
+      return dispatch((0, _actions.singleAction)(props));
+    }
+  };
+};
+
+var _default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SidebarContainer));
+
+exports.default = _default;
+},{"@babel/runtime/helpers/classCallCheck":"../node_modules/@babel/runtime/helpers/classCallCheck.js","@babel/runtime/helpers/createClass":"../node_modules/@babel/runtime/helpers/createClass.js","@babel/runtime/helpers/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js","@babel/runtime/helpers/getPrototypeOf":"../node_modules/@babel/runtime/helpers/getPrototypeOf.js","@babel/runtime/helpers/assertThisInitialized":"../node_modules/@babel/runtime/helpers/assertThisInitialized.js","@babel/runtime/helpers/inherits":"../node_modules/@babel/runtime/helpers/inherits.js","@babel/runtime/helpers/defineProperty":"../node_modules/@babel/runtime/helpers/defineProperty.js","react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/es/index.js","store/actions":"store/actions/index.js","constants/reducers":"constants/reducers.js","./Sidebar":"components/Sidebar/Sidebar.js"}],"components/Sidebar/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    return _SidebarContainer.default;
+  }
+});
+
+var _SidebarContainer = _interopRequireDefault(require("./SidebarContainer"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./SidebarContainer":"components/Sidebar/SidebarContainer.js"}],"components/FullPageLoader/FullPageLoader.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.FullPageLoader = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRedux = require("react-redux");
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _semanticUiReact = require("semantic-ui-react");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FullPageLoader = function FullPageLoader(_ref) {
+  var _ref$loader = _ref.loader,
+      active = _ref$loader.active,
+      loadedArticles = _ref$loader.loadedArticles,
+      totalArticles = _ref$loader.totalArticles,
+      completed = _ref$loader.completed;
+  return _react.default.createElement(_semanticUiReact.Dimmer, {
+    active: active > completed,
+    "data-cy": "loader"
+  }, _react.default.createElement(_semanticUiReact.Loader, {
+    "data-cy": "message"
+  }, "Loading ", loadedArticles, " of ", totalArticles, " articles"));
+};
+
+exports.FullPageLoader = FullPageLoader;
+FullPageLoader.propTypes = {
+  loader: _propTypes.default.shape({
+    active: _propTypes.default.number,
+    completed: _propTypes.default.number,
+    loadedArticles: _propTypes.default.number,
+    totalArticles: _propTypes.default.number
+  }).isRequired
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    loader: state.loader
+  };
+};
+
+var _default = (0, _reactRedux.connect)(mapStateToProps)(FullPageLoader);
+
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","prop-types":"../node_modules/prop-types/index.js","semantic-ui-react":"../node_modules/semantic-ui-react/dist/es/index.js"}],"components/FullPageLoader/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    return _FullPageLoader.default;
+  }
+});
+
+var _FullPageLoader = _interopRequireDefault(require("./FullPageLoader"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./FullPageLoader":"components/FullPageLoader/FullPageLoader.js"}],"utils/localStorage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
